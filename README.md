@@ -1,10 +1,10 @@
 <h1 align="center">
   <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="224px"/><br/>
-  Laracusre
+  Laraemp
 </h1>
-<p align="center">Laracusre is a simple project for Customer Retail Management App Like Monday.com</p>
+<p align="center">Laraemp is a simple project for Employees Management App</p>
 
-<p align="center"><a href="https://github.com/dibaliqaja/laracusre/releases" target="_blank"><img src="https://img.shields.io/badge/version-v0.0.1-red?style=for-the-badge&logo=none" alt="system version" /></a>&nbsp;<a href="https://pkg.go.dev/github.com/create-go-app/cli/v3?tab=doc" target="_blank"><img src="https://img.shields.io/badge/Laravel-8.61.0-fb503b?style=for-the-badge&logo=laravel" alt="laravel version" /></a>&nbsp;<img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="license" /></p>
+<p align="center"><a href="https://github.com/dibaliqaja/laraemp/releases" target="_blank"><img src="https://img.shields.io/badge/version-v0.0.1-red?style=for-the-badge&logo=none" alt="system version" /></a>&nbsp;<a href="https://pkg.go.dev/github.com/create-go-app/cli/v3?tab=doc" target="_blank"><img src="https://img.shields.io/badge/Laravel-8.61.0-fb503b?style=for-the-badge&logo=laravel" alt="laravel version" /></a>&nbsp;<img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="license" /></p>
 
 ### Features
 - Ongoing
@@ -24,11 +24,11 @@
 ### ⚡️ Installation
 1. Clone GitHub repo for this project locally
 ```bash
-$ git clone https://github.com/dibaliqaja/laracusre.git
+$ git clone https://github.com/dibaliqaja/laraemp.git
 ```
 2. Change directory in project which already clone
 ```bash
-$ cd laracusre
+$ cd laraemp
 ```
 3. Install Composer dependencies
 ```bash
