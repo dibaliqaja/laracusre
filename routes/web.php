@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\StateController;
@@ -26,3 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('user', UserController::class);
 Route::resource('countries', CountryController::class);
 Route::resource('states', StateController::class);
+Route::resource('cities', CityController::class);

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title_page', 'States')
+@section('title_page', 'Cities')
 @section('content')
     <div class="col-xl-12 col-lg-12">
         @if (Session::has('alert'))
@@ -14,12 +14,12 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">State list</h6>
+                <h6 class="m-0 font-weight-bold text-primary">City list</h6>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-8">
-                        <a href="{{ route('states.create') }}" class="btn btn-primary">Add new state</a><br><br>
+                        <a href="{{ route('cities.create') }}" class="btn btn-primary">Add new state</a><br><br>
                     </div>
                     <div class="col-md-4">
                         <form action="#" class="flex-sm">
@@ -27,7 +27,7 @@
                                 <input type="text" name="keyword" class="form-control" placeholder="Search" value="{{ Request::get('keyword') }}">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary mr-2 rounded-right" type="submit"><i class="fas fa-search"></i></button>
-                                    <button onclick="window.location.href='{{ route('states.index') }}'" type="button" class="btn btn-md btn-secondary rounded"><i class="fas fa-sync-alt"></i></button>
+                                    <button onclick="window.location.href='{{ route('cities.index') }}'" type="button" class="btn btn-md btn-secondary rounded"><i class="fas fa-sync-alt"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -38,19 +38,19 @@
                         <tr align="center">
                             <th width="5%">No</th>
                             <th>#</th>
-                            <th>Country Name</th>
+                            <th>State Name</th>
                             <th>State Name</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($states as $state => $result)
+                        @forelse ($cities as $city => $result)
                             <tr>
-                                <td>{{ $state + $states->firstitem() }}</td>
+                                <td>{{ $city + $cities->firstitem() }}</td>
                                 <td align="center">                             
-                                    <a href="{{ route('states.edit', $result->id) }}" type="button" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a>                                
+                                    <a href="{{ route('cities.edit', $result->id) }}" type="button" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a>                                
                                     <a href="javascript:void(0)" id="btn-delete" class="btn btn-sm btn-danger" onclick="deleteData('{{ $result->id }}')" data-toggle="modal" data-target="#deleteUserModal"><i class="fas fa-trash"></i></a>
                                 </td>
-                                <td>{{ $result->country->name }}</td>
+                                <td>{{ $result->state->name }}</td>
                                 <td>{{ $result->name }}</td>
                             </tr>
                         @empty
@@ -77,7 +77,7 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="vcenter">Delete State</h4>
+                        <h4 class="modal-title" id="vcenter">Delete City</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -98,7 +98,7 @@
 @section('script')
     <script>
         function deleteData(id) {
-            let url = '{{ route("states.destroy", ":id") }}';
+            let url = '{{ route("cities.destroy", ":id") }}';
             url     = url.replace(':id', id);
             $("#deleteForm").attr('action', url);
         }
