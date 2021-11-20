@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -99,7 +104,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('user.index')->with('alert', 'Pengguna baru berhasil diupdate.');
+        return redirect()->route('user.index')->with('alert', 'Pengguna berhasil diupdate.');
     }
 
     /**

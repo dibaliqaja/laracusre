@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CountryStoreRequest;
+use App\Http\Requests\StateStoreRequest;
 use App\Models\Country;
+use App\Models\State;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class StateController extends Controller
 {
     public function __construct()
     {
@@ -21,15 +22,18 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        $countries = Country::latest()->paginate(10);
+        $states = State::latest()->paginate(10);
         $search = $request->keyword;
         if ($search) 
-            $countries = Country::where('country_code', 'LIKE', "%$search%")
+            $states = State::with('country')
+                    ->whereHas('country', function($query) use ($search) {
+                        $query->where('name', 'LIKE', "%$search%");
+                    })
                     ->orWhere('name', 'LIKE', "%$search%")
                     ->latest()
                     ->paginate(10);
         
-        return view('countries.index', compact('countries'));
+        return view('states.index', compact('states'));
     }
 
     /**
@@ -39,20 +43,21 @@ class CountryController extends Controller
      */
     public function create()
     {
-        return view('countries.create');
+        $countries = Country::all();
+
+        return view('states.create', compact('countries'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Requests\CountryStoreRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CountryStoreRequest $request)
+    public function store(StateStoreRequest $request)
     {
-        Country::create($request->validated());
-
-        return redirect()->route('countries.index')->with('alert', 'Country baru berhasil ditambahkan.');
+        State::create($request->validated());
+        return redirect()->route('states.index')->with('alert', 'State baru berhasil ditambahkan.');
     }
 
     /**
@@ -61,9 +66,10 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit(State $state)
     {
-        return view('countries.edit', compact('country'));
+        $countries = Country::all();
+        return view('states.edit', compact('state', 'countries'));
     }
 
     /**
@@ -73,11 +79,10 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CountryStoreRequest $request, Country $country)
+    public function update(StateStoreRequest $request, State $state)
     {
-        $country->update($request->validated());
-
-        return redirect()->route('countries.index')->with('alert', 'Country baru berhasil ditambahkan.');
+        $state->update($request->validated());
+        return redirect()->route('states.index')->with('message', 'State berhasil diupdate');
     }
 
     /**
@@ -86,10 +91,9 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(State $state)
     {
-        $country->delete();
-
-        return redirect()->route('countries.index')->with('alert', 'Country berhasil dihapus.');
+        $state->delete();
+        return redirect()->route('states.index')->with('alert', 'State berhasil dihapus.');
     }
 }
