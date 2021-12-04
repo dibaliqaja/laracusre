@@ -238,7 +238,7 @@
                         @yield('content')
                     </div>
 
-                    <!-- Content Row -->
+                    {{-- <!-- Content Row -->
                     <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
@@ -553,7 +553,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <!-- /.container-fluid -->
@@ -629,11 +629,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script>
+    <script src="{{ mix('/js/app.js') }}"></script>
+
+    {{-- <script>
         $(document).ready(function() {
             $('.select2').select2();
         });
-    </script>
+    </script> --}}
     
     @yield('script')
 

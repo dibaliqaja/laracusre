@@ -23,8 +23,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('user', UserController::class);
-Route::resource('countries', CountryController::class);
-Route::resource('states', StateController::class);
-Route::resource('cities', CityController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('user', UserController::class);
+    Route::resource('countries', CountryController::class);
+    Route::resource('states', StateController::class);
+    Route::resource('cities', CityController::class);
+    
+    Route::get('{any}', function () {
+        return view('employees.index');
+    })->where('any', '.*');
+});
+
