@@ -44,20 +44,39 @@
                                 <td align="center">
                                     <router-link :to="{name: 'EmployeesEdit', params: {id: employee.id}}" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></router-link>                       
                                     <button class="btn btn-sm btn-danger" @click="deleteEmployee(employee.id)"><i class="fas fa-trash"></i></button>
-                                    <!-- <a href="#" id="btn-delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteUserModal"><i class="fas fa-trash"></i></a> -->
+                                    <!-- <a href="#" id="btn-delete" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteEmployeeModal"><i class="fas fa-trash"></i></a> -->
                                 </td>
                                 <td>{{ employee.first_name }}</td>
                                 <td>{{ employee.last_name }}</td>
                                 <td>{{ employee.address }}</td>
                             </tr>
                         </tbody>
-                        <tfoot>
-                            
-                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
+        <!-- <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <form action="javascript:void(0)" id="deleteForm" method="post">    
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="vcenter">Delete Employee</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button @click="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> -->
     </div>
 </template>
 

@@ -11,8 +11,14 @@
                             <label for="first_name" class="col-md-4 col-form-label text-md-right">first_name</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" v-model="form.first_name" type="text" class="form-control" name="first_name" value="" required autocomplete="first_name" autofocus>
+                                <input id="first_name" v-model="form.first_name" type="text" v-bind:class="{ 'is-invalid': errors.first_name }" class="form-control" name="first_name" value="" required autocomplete="first_name" autofocus>
+                                <ul v-if="errors.first_name">
+                                    <li v-for="error in errors.first_name" :key="error.first_name" class="text-danger">
+                                        {{ error }}
+                                    </li>
+                                </ul>
                             </div>
+
                         </div>
 
                         <div class="form-group row">
@@ -138,7 +144,8 @@ export default {
                 zip_code: "",
                 birthdate: null,
                 date_hired: null
-            }
+            },
+            errors: []
         };
     },
     created() {
@@ -184,6 +191,8 @@ export default {
                 })
                 .then(res => {
                     this.$router.push({ name: "EmployeesIndex" });
+                }).catch(error => { 
+                    this.errors = error.response.data.errors;
                 });
         },
         format_date(value) {

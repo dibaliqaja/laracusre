@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -65,6 +65,13 @@
                 <a class="collapse-item" href="cards.html">Permission</a>
             </div>
         </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            Logout
+        </a>
     </li>
 
     <!-- Divider -->

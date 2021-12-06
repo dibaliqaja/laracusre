@@ -48,6 +48,10 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeStoreRequest $request)
     {
+        if (!$request->validated()) {
+            return response()->json(['errors' => $request->validated()->errors()->all()]);
+        }
+
         $employee = Employee::create($request->validated());
 
         return response()->json($employee);
@@ -84,6 +88,10 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeStoreRequest $request, Employee $employee)
     {
+        if (!$request->validated()) {
+            return response()->json(['errors' => $request->validated()->errors()->all()]);
+        }
+        
         $employee->update($request->validated());
     }
 
